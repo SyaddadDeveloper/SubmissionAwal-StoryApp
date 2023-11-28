@@ -7,6 +7,7 @@
     tools:context=".view.login.LoginActivity">
 
     <ImageView
+        android:contentDescription="img_desc_login"
         android:id="@+id/imageView"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -79,7 +80,7 @@
         app:startIconDrawable="@drawable/ic_baseline_email_24"
         tools:alpha="100">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <com.example.submissionstoryapp.view.custom.EditTextEmail
             android:id="@+id/emailEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -116,7 +117,7 @@
         app:startIconDrawable="@drawable/ic_baseline_lock_24"
         tools:alpha="100">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <com.example.submissionstoryapp.view.custom.EditTextPassword
             android:id="@+id/passwordEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

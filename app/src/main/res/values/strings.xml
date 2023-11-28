@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">SubmissionStoryApp</string>
 
     <string name="signup">Daftar</string>
@@ -14,4 +14,6 @@
     <string name="message_main_page">Selamat Belajar di Dicoding.</string>
     <string name="greeting">Halo %1$s,</string>
     <string name="logout">Keluar</string>
+    <string name="invalidEmail">Email Invalid</string>
+    <string name="regex_email" tools:ignore="TypographyDashes">^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$</string>
 </resources>
