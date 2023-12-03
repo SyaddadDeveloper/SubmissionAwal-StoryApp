@@ -8,7 +8,9 @@ import android.os.Bundle
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
+import com.example.submissionstoryapp.R
 import com.example.submissionstoryapp.databinding.ActivityWelcomeBinding
 import com.example.submissionstoryapp.view.login.LoginActivity
 import com.example.submissionstoryapp.view.signup.SignupActivity
@@ -36,7 +38,8 @@ class WelcomeActivity : AppCompatActivity() {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN
             )
         }
-        supportActionBar?.hide()
+        supportActionBar?.displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM
+        supportActionBar?.setCustomView(R.layout.custom_actionbar)
     }
 
     private fun setupAction() {

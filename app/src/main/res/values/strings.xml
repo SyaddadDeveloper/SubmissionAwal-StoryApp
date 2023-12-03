@@ -16,4 +16,15 @@
     <string name="logout">Keluar</string>
     <string name="invalidEmail">Email Invalid</string>
     <string name="regex_email" tools:ignore="TypographyDashes">^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$</string>
+
+    <string name="camera_x">CameraX</string>
+    <string name="camera">Kamera</string>
+    <string name="gallery">Galeri</string>
+    <string name="upload">Unggah</string>
+    <string name="empty_image_warning">Silakan masukkan berkas gambar terlebih dahulu.</string>
+    <string name="description">Description</string>
+    <string name="my_story_logo">MY STORY LOGO</string>
+    <string name="success_title">Yeah</string>
+    <string name="error_title">OOPS</string>
+    <string name="img_desc_login">img_desc_login</string>
 </resources>

@@ -11,7 +11,7 @@ import android.view.WindowManager
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.submissionstoryapp.databinding.ActivityMainBinding
-import com.example.submissionstoryapp.view.ViewModelFactory
+import com.example.submissionstoryapp.data.ViewModelFactory
 import com.example.submissionstoryapp.view.welcome.WelcomeActivity
 
 class MainActivity : AppCompatActivity() {
@@ -73,3 +73,4 @@ class MainActivity : AppCompatActivity() {
         }.start()
     }
 }
+

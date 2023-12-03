@@ -11,9 +11,10 @@ import android.view.WindowManager
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.example.submissionstoryapp.data.pref.UserModel
+import com.example.submissionstoryapp.data.Result
 import com.example.submissionstoryapp.databinding.ActivityLoginBinding
-import com.example.submissionstoryapp.view.ViewModelFactory
+import com.example.submissionstoryapp.data.ViewModelFactory
+import com.example.submissionstoryapp.data.response.LoginResponse
 import com.example.submissionstoryapp.view.main.MainActivity
 
 
@@ -49,18 +50,50 @@ class LoginActivity : AppCompatActivity() {
     private fun setupAction() {
         binding.loginButton.setOnClickListener {
             val email = binding.emailEditText.text.toString()
-            viewModel.saveSession(UserModel(email, "sample_token"))
-            AlertDialog.Builder(this).apply {
-                setTitle("Yeah!")
-                setMessage("Anda berhasil login. Sudah tidak sabar untuk belajar ya?")
-                setPositiveButton("Lanjut") { _, _ ->
-                    val intent = Intent(context, MainActivity::class.java)
-                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-                    startActivity(intent)
-                    finish()
+            val password = binding.passwordEditText.text.toString()
+
+            viewModel.login(email, password)
+            viewModel.loginResult.observe(this) { result ->
+                when (result) {
+                    is Result.Loading -> {
+                        showLoading(true)
+                    }
+
+                    is Result.Success -> {
+                        showLoading(false)
+                        // Lakukan sesuatu dengan hasil sukses
+                        val response: LoginResponse = result.data
+                        // Tampilkan response atau lakukan sesuatu dengan data response
+                        AlertDialog.Builder(this).apply {
+                            setTitle("Yeah!")
+                            setMessage(response.message)
+                            setPositiveButton("OKE") { _, _ ->
+                                val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                                intent.flags =
+                                    Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                                startActivity(intent)
+                                finish()
+                            }
+                            create()
+                            show()
+                        }
+                    }
+
+                    is Result.Error -> {
+                        showLoading(false)
+                        // Lakukan sesuatu dengan hasil error
+                        val errorMessage: String = result.error
+                        // Tampilkan pesan error atau lakukan sesuatu dengan pesan error
+                        AlertDialog.Builder(this).apply {
+                            setTitle("OOPS!")
+                            setMessage(errorMessage)
+                            setPositiveButton("OKE") { _, _ ->
+                            }
+                            create()
+                            show()
+                        }
+                    }
                 }
-                create()
-                show()
             }
         }
     }
@@ -97,6 +130,16 @@ class LoginActivity : AppCompatActivity() {
             )
             startDelay = 100
         }.start()
+    }
+
+    fun showLoading(isLoading: Boolean) {
+        binding.apply {
+            if (isLoading) {
+                progressBarLogin.visibility = View.VISIBLE
+            } else {
+                progressBarLogin.visibility = View.GONE
+            }
+        }
     }
 
 }

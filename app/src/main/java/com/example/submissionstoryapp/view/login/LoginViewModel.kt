@@ -1,15 +1,25 @@
 package com.example.submissionstoryapp.view.login
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.submissionstoryapp.data.UserRepository
-import com.example.submissionstoryapp.data.pref.UserModel
+import com.example.submissionstoryapp.data.repository.UserRepository
+import com.example.submissionstoryapp.data.Result
+import com.example.submissionstoryapp.data.response.LoginResponse
 import kotlinx.coroutines.launch
 
-class LoginViewModel(private val repository: UserRepository) : ViewModel() {
-    fun saveSession(user: UserModel) {
+class LoginViewModel(private val storyRepository: UserRepository) : ViewModel() {
+
+    private val _loginResult = MutableLiveData<Result<LoginResponse>>()
+    val loginResult: LiveData<Result<LoginResponse>> get() = _loginResult
+
+    fun login(email: String, password: String) {
+        _loginResult.value = Result.Loading
+
         viewModelScope.launch {
-            repository.saveSession(user)
+            val result = storyRepository.login(email, password)
+            _loginResult.value = result
         }
     }
 }
