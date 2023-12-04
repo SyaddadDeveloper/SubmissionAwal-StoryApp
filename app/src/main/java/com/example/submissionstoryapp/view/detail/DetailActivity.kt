@@ -18,9 +18,11 @@ class DetailActivity : AppCompatActivity() {
         name = intent.getStringExtra(NAME) ?: ""
         description = intent.getStringExtra(DESCRIPTION) ?: ""
         picture = intent.getStringExtra(PICTURE) ?: ""
+        createdAt = intent.getStringExtra(CREATED_AT) ?: ""
 
         binding.tvDetailName.text = name
-        binding.tvDetailName.text = description
+        binding.tvDetailDescription.text = description
+        binding.tvCreatAt.text = createdAt
 
         Glide.with(this).load(picture).into(binding.ivDetailStory)
 
@@ -33,10 +35,13 @@ class DetailActivity : AppCompatActivity() {
         const val NAME = "NAME"
         const val DESCRIPTION = "DESCRIPTION"
         const val PICTURE = "PICTURE"
+        const val CREATED_AT = "createdAt"
+
 
         var id: String = ""
         var name: String = ""
         var description: String? = null
         var picture: String? = null
+        var createdAt: String? = null
     }
 }

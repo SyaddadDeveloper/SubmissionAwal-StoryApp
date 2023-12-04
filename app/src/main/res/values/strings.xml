@@ -30,4 +30,5 @@
     <string name="menu_language">language</string>
     <string name="menu_logout">logout</string>
     <string name="detail">detail</string>
+    <string name="format_date">xx/xx/xx</string>
 </resources>

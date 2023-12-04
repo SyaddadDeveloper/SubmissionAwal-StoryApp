@@ -18,6 +18,7 @@ import com.example.submissionstoryapp.databinding.ActivityMainBinding
 import com.example.submissionstoryapp.data.ViewModelFactory
 import com.example.submissionstoryapp.view.welcome.WelcomeActivity
 import com.example.submissionstoryapp.data.Result
+import com.example.submissionstoryapp.view.story.StoryActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -31,16 +32,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         setUpAction()
-
-        viewModel.getSession().observe(this) {
-
-        }
+        viewModel.getSession().observe(this) {}
 
         supportActionBar?.displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM
         supportActionBar?.setCustomView(R.layout.custom_actionbar)
-
         itemDecoration()
 
         viewModel.getSession().observe(this) { user ->
@@ -81,8 +77,12 @@ class MainActivity : AppCompatActivity() {
         viewModel.getStories()
     }
 
-    //persiapan menambahkan story
     private fun setUpAction() {
+        binding.fabAddStory.setOnClickListener {
+            Intent(this, StoryActivity::class.java).also {
+                startActivity(it)
+            }
+        }
     }
 
     private fun itemDecoration() {

@@ -32,12 +32,14 @@ class StoryAdapter :
             Glide.with(binding.root)
                 .load(itemName.photoUrl)
                 .into(binding.ivItemStory)
+            binding.tvItemDescription.text = itemName.description
             binding.root.setOnClickListener {
                 val intentDetail = Intent(binding.root.context, DetailActivity::class.java)
                 intentDetail.putExtra(DetailActivity.ID, itemName.id)
                 intentDetail.putExtra(DetailActivity.NAME, itemName.name)
                 intentDetail.putExtra(DetailActivity.DESCRIPTION, itemName.description)
                 intentDetail.putExtra(DetailActivity.PICTURE, itemName.photoUrl)
+                intentDetail.putExtra(DetailActivity.CREATED_AT,itemName.createdAt)
                 binding.root.context.startActivity(intentDetail)
             }
         }
