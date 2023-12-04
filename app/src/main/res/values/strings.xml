@@ -27,4 +27,7 @@
     <string name="success_title">Yeah</string>
     <string name="error_title">OOPS</string>
     <string name="img_desc_login">img_desc_login</string>
+    <string name="menu_language">language</string>
+    <string name="menu_logout">logout</string>
+    <string name="detail">detail</string>
 </resources>

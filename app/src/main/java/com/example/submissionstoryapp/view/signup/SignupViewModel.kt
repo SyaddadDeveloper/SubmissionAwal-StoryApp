@@ -10,7 +10,6 @@ import kotlinx.coroutines.launch
 import com.example.submissionstoryapp.data.Result
 
 class SignupViewModel(private val storyRepository: UserRepository) : ViewModel() {
-
     private val _registrationResult = MutableLiveData<Result<SignupResponse>>()
     val registrationResult: LiveData<Result<SignupResponse>> get() = _registrationResult
 

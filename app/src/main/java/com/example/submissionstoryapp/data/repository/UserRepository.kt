@@ -80,6 +80,19 @@ class UserRepository private constructor(
         }
     }
 
+    fun getStories() = liveData {
+        emit(Result.Loading)
+        try {
+            val response = apiService.getStories()
+            emit(Result.Success(response))
+        } catch (e: HttpException) {
+            val jsonInString = e.response()?.errorBody()?.string()
+            val errorBody = Gson().fromJson(jsonInString, ErrorResponse::class.java)
+            val errorMessage = errorBody.message
+            Result.Error(errorMessage.toString())
+        }
+    }
+
     fun uploadStories(imageFile: File, description: String) = liveData {
         emit(Result.Loading)
         val requestBody = description.toRequestBody("text/plain".toMediaType())
@@ -98,9 +111,6 @@ class UserRepository private constructor(
             emit(Result.Error("Error: $errorResponse"))
         }
     }
-
-
-
 
     companion object {
         @Volatile

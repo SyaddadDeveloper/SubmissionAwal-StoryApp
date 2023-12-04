@@ -1,14 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
-    android:gravity="start">
+    android:gravity="start"
+    android:padding="5dp">
 
     <ImageView
-        android:layout_width="205dp"
+        android:id="@+id/iv_logo"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="50dp"
         android:layout_height="50dp"
         android:src="@drawable/img_logo"
-        android:layout_gravity="center"
+        android:layout_gravity="start"
         android:contentDescription="@string/my_story_logo" />
-</LinearLayout>
+
+    <TextView
+        app:layout_constraintTop_toTopOf="@id/iv_logo"
+        app:layout_constraintStart_toEndOf="@id/iv_logo"
+        app:layout_constraintBottom_toBottomOf="@id/iv_logo"
+        android:layout_marginStart="12dp"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:textColor="@color/dark_green"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
