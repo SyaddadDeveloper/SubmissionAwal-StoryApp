@@ -13,8 +13,8 @@ import kotlinx.coroutines.launch
 import com.example.submissionstoryapp.data.Result
 
 class MainViewModel(private val repository: UserRepository) : ViewModel() {
-    private val listStory = MutableLiveData<Result<StoryResponse>>()
-    val dataStory: LiveData<Result<StoryResponse>> = listStory
+    private val _listStory = MutableLiveData<Result<StoryResponse>>()
+    val dataStory: LiveData<Result<StoryResponse>> get() = _listStory
 
     init {
         getStories()
@@ -34,7 +34,7 @@ class MainViewModel(private val repository: UserRepository) : ViewModel() {
         viewModelScope.launch {
             val storyResponse = repository.getStories()
             storyResponse.asFlow().collect {
-                listStory.value = it
+                _listStory.value = it
             }
         }
     }

@@ -46,35 +46,40 @@ class MainActivity : AppCompatActivity() {
                 startActivity(Intent(this, WelcomeActivity::class.java))
                 finish()
             }
-            viewModel.dataStory.observe(this) { story ->
-                if (story != null) {
-                    when (story) {
-                        is Result.Loading -> {
-                            Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
-                            showLoading(true)
-                        }
+        }
 
-                        is Result.Success -> {
-                            val storyData = story.data.listStory
-                            val storyAdapter = StoryAdapter()
-                            storyAdapter.submitList(storyData)
-                            binding.rvStory.adapter = storyAdapter
-                            showLoading(false)
-                        }
+        viewModel.dataStory.observe(this) { story ->
+            if (story != null) {
+                when (story) {
+                    is Result.Loading -> {
+                        Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
+                        showLoading(true)
+                    }
 
-                        is Result.Error -> {
-                            showLoading(false)
-                        }
+                    is Result.Success -> {
+                        val storyData = story.data.listStory
+                        val storyAdapter = StoryAdapter()
+                        storyAdapter.submitList(storyData)
+                        binding.rvStory.adapter = storyAdapter
+                        showLoading(false)
+                    }
+
+                    is Result.Error -> {
+                        showLoading(false)
                     }
                 }
             }
-
         }
     }
 
     override fun onResume() {
         super.onResume()
-        viewModel.getStories()
+        try {
+            viewModel.getStories()
+        } catch (e: Exception) {
+            Toast.makeText(this, "An error occurred while loading stories.", Toast.LENGTH_SHORT).show()
+            Log.e("MainActivity", "Error during onResume", e)
+        }
     }
 
     private fun setUpAction() {

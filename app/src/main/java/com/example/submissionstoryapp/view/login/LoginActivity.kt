@@ -5,9 +5,11 @@ import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -28,7 +30,6 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         setupView()
         setupAction()
         playAnimation()
@@ -55,48 +56,43 @@ class LoginActivity : AppCompatActivity() {
             viewModel.login(email, password)
             viewModel.loginResult.observe(this) { result ->
                 when (result) {
-                    is Result.Loading -> {
-                        showLoading(true)
-                    }
-
-                    is Result.Success -> {
-                        showLoading(false)
-                        // Lakukan sesuatu dengan hasil sukses
-                        val response: LoginResponse = result.data
-                        // Tampilkan response atau lakukan sesuatu dengan data response
-                        AlertDialog.Builder(this).apply {
-                            setTitle("Yeah!")
-                            setMessage(response.message)
-                            setPositiveButton("OKE") { _, _ ->
-                                val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                                intent.flags =
-                                    Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-                                startActivity(intent)
-                                finish()
-                            }
-                            create()
-                            show()
-                        }
-                    }
-
-                    is Result.Error -> {
-                        showLoading(false)
-                        // Lakukan sesuatu dengan hasil error
-                        val errorMessage: String = result.error
-                        // Tampilkan pesan error atau lakukan sesuatu dengan pesan error
-                        AlertDialog.Builder(this).apply {
-                            setTitle("OOPS!")
-                            setMessage(errorMessage)
-                            setPositiveButton("OKE") { _, _ ->
-                            }
-                            create()
-                            show()
-                        }
-                    }
+                    is Result.Loading -> showLoading(true)
+                    is Result.Success -> handleSuccessResult(result.data)
+                    is Result.Error -> handleErrorResult(result.error)
                 }
             }
         }
     }
+    private fun handleSuccessResult(response: LoginResponse) {
+        showLoading(false)
+        AlertDialog.Builder(this).apply {
+            setTitle("Yeah!")
+            setMessage(response.message)
+            setPositiveButton("OKE") { _, _ ->
+                val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                startActivity(intent)
+                finish()
+            }
+            create()
+            show()
+        }
+    }
+
+    private fun handleErrorResult(errorMessage: String) {
+        showLoading(false)
+        AlertDialog.Builder(this).apply {
+            setTitle("OOPS!")
+            setMessage(errorMessage)
+            setPositiveButton("OKE") { _, _ ->
+                Log.d("LoginActivity", "User clicked OK on error dialog")
+                Toast.makeText(this@LoginActivity, "Terjadi kesalahan", Toast.LENGTH_SHORT).show()
+            }
+            create()
+            show()
+        }
+    }
+
 
     private fun playAnimation() {
         ObjectAnimator.ofFloat(binding.imageView, View.TRANSLATION_X, -30f, 30f).apply {
@@ -132,14 +128,8 @@ class LoginActivity : AppCompatActivity() {
         }.start()
     }
 
-    fun showLoading(isLoading: Boolean) {
-        binding.apply {
-            if (isLoading) {
-                progressBarLogin.visibility = View.VISIBLE
-            } else {
-                progressBarLogin.visibility = View.GONE
-            }
-        }
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressBarLogin.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
 }

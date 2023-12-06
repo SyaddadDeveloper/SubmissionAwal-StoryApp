@@ -102,8 +102,6 @@ Dapp/src/main/java/com/example/submissionstoryapp/view/story/utils.kt,9\3\931e3
 Lapp/src/main/java/com/example/submissionstoryapp/view/story/StoryActivity.kt,c\6\c6f9cc66aac2f6e7fc6b1828a6eedb1931396084
 }
 Mapp/src/main/java/com/example/submissionstoryapp/view/story/StoryViewModel.kt,3\a\3a2f7d184afe3d8c1945e04edb257b49aa4529ed
-€
-Papp/src/main/java/com/example/submissionstoryapp/view/camerax/CameraXActivity.kt,3\a\3ab0e7c52136aba71052de8d6514f852df50c8af
 y
 Iapp/src/main/java/com/example/submissionstoryapp/data/ViewModelFactory.kt,f\7\f7d6db0e304ac996963ed8a7b1fc9721db4578c7
 o

@@ -27,20 +27,21 @@ class StoryAdapter :
 
     inner class MyViewHolder(private val binding: ItemStoryBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(itemName: ListStoryItem) {
-            binding.tvItemName.text = itemName.name
-            Glide.with(binding.root)
-                .load(itemName.photoUrl)
-                .into(binding.ivItemStory)
-            binding.tvItemDescription.text = itemName.description
-            binding.root.setOnClickListener {
-                val intentDetail = Intent(binding.root.context, DetailActivity::class.java)
-                intentDetail.putExtra(DetailActivity.ID, itemName.id)
-                intentDetail.putExtra(DetailActivity.NAME, itemName.name)
-                intentDetail.putExtra(DetailActivity.DESCRIPTION, itemName.description)
-                intentDetail.putExtra(DetailActivity.PICTURE, itemName.photoUrl)
-                intentDetail.putExtra(DetailActivity.CREATED_AT,itemName.createdAt)
-                binding.root.context.startActivity(intentDetail)
+        fun bind(itemName: ListStoryItem?) {
+            itemName?.let {
+                binding.tvItemName.text = itemName.name
+                Glide.with(binding.root)
+                    .load(itemName.photoUrl)
+                    .into(binding.ivItemStory)
+                binding.tvItemDescription.text = itemName.description
+                binding.root.setOnClickListener {
+                    val intentDetail = Intent(binding.root.context, DetailActivity::class.java)
+                    intentDetail.putExtra(DetailActivity.ID, itemName.id)
+                    intentDetail.putExtra(DetailActivity.NAME, itemName.name)
+                    intentDetail.putExtra(DetailActivity.DESCRIPTION, itemName.description)
+                    intentDetail.putExtra(DetailActivity.PICTURE, itemName.photoUrl)
+                    intentDetail.putExtra(DetailActivity.CREATED_AT,itemName.createdAt)
+                    binding.root.context.startActivity(intentDetail)}
             }
         }
     }
@@ -48,7 +49,7 @@ class StoryAdapter :
     companion object {
         val DIFF_CALLBACK = object : DiffUtil.ItemCallback<ListStoryItem>() {
             override fun areItemsTheSame(oldItem: ListStoryItem, newItem: ListStoryItem): Boolean {
-                return oldItem == newItem
+                return oldItem.id == newItem.id
             }
 
             override fun areContentsTheSame(

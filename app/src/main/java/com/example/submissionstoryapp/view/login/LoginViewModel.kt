@@ -15,10 +15,13 @@ class LoginViewModel(private val storyRepository: UserRepository) : ViewModel() 
 
     fun login(email: String, password: String) {
         _loginResult.value = Result.Loading
-
         viewModelScope.launch {
-            val result = storyRepository.login(email, password)
-            _loginResult.value = result
+            try {
+                val result = storyRepository.login(email, password)
+                _loginResult.value = result
+            } catch (e: Exception) {
+                _loginResult.value = Result.Error(e.message ?: "An error occurred")
+            }
         }
     }
 }
