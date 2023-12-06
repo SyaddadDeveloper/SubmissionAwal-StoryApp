@@ -63,6 +63,7 @@ class LoginActivity : AppCompatActivity() {
             }
         }
     }
+
     private fun handleSuccessResult(response: LoginResponse) {
         showLoading(false)
         AlertDialog.Builder(this).apply {

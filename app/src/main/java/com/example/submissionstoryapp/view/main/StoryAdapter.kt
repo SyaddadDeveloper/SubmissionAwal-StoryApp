@@ -1,8 +1,12 @@
 package com.example.submissionstoryapp.view.main
 
+import android.app.Activity
 import android.content.Intent
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.ActivityOptionsCompat
+import androidx.core.util.Pair
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -40,8 +44,14 @@ class StoryAdapter :
                     intentDetail.putExtra(DetailActivity.NAME, itemName.name)
                     intentDetail.putExtra(DetailActivity.DESCRIPTION, itemName.description)
                     intentDetail.putExtra(DetailActivity.PICTURE, itemName.photoUrl)
-                    intentDetail.putExtra(DetailActivity.CREATED_AT,itemName.createdAt)
-                    binding.root.context.startActivity(intentDetail)}
+                    intentDetail.putExtra(DetailActivity.CREATED_AT, itemName.createdAt)
+                    val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                        binding.root.context as Activity,
+                        Pair(binding.ivItemStory as View, "transition_iv_item_story"),
+                        Pair(binding.tvItemName as View, "transition_tv_item_name")
+                    ).toBundle()
+                    binding.root.context.startActivity(intentDetail, options)
+                }
             }
         }
     }

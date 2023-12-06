@@ -1,34 +1,34 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">SubmissionStoryApp</string>
 
-    <string name="signup">Daftar</string>
-    <string name="login">Masuk</string>
-    <string name="message_welcome_page">Jangan Kau Pendam Perasaanmu \n Ceritakanlah Kisah Manis dan Pahit mu</string>
-    <string name="title_welcome_page">Selamat datang di My Story!</string>
-    <string name="title_signup_page">Lengkapi data dirimu di bawah ini ya</string>
+    <string name="signup">SignUp</string>
+    <string name="login">Login</string>
+    <string name="message_welcome_page">Don\'t Bury Your Feelings, Tell Your Sweet and Bitter story</string>
+    <string name="title_welcome_page">Welcome to My Story!</string>
+    <string name="title_signup_page">Fill out your data below.</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
-    <string name="message_login_page">Masukkan dulu datamu ya</string>
-    <string name="title_login_page">Selangkah Lagi Untuk Menceritakan Perasaanmu</string>
-    <string name="name">Nama</string>
-    <string name="message_main_page">Selamat Belajar di Dicoding.</string>
-    <string name="greeting">Halo %1$s,</string>
-    <string name="logout">Keluar</string>
+    <string name="message_login_page">Enter your data first</string>
+    <string name="title_login_page">One More Step To Telling You What You\'re Feeling</string>
+    <string name="name">Name</string>
+    <string name="greeting">Hello %1$s,</string>
+    <string name="logout">Logout</string>
     <string name="invalidEmail">Email Invalid</string>
     <string name="regex_email" tools:ignore="TypographyDashes">^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$</string>
-
-    <string name="camera_x">CameraX</string>
-    <string name="camera">Kamera</string>
-    <string name="gallery">Galeri</string>
-    <string name="upload">Unggah</string>
-    <string name="empty_image_warning">Silakan masukkan berkas gambar terlebih dahulu.</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="upload">Upload</string>
+    <string name="empty_image_warning">Please enter the image file first.</string>
     <string name="description">Description</string>
     <string name="my_story_logo">MY STORY LOGO</string>
     <string name="success_title">Yeah</string>
     <string name="error_title">OOPS</string>
-    <string name="img_desc_login">img_desc_login</string>
+    <string name="img_desc_login">image login description</string>
     <string name="menu_language">language</string>
     <string name="menu_logout">logout</string>
     <string name="detail">detail</string>
     <string name="format_date">xx/xx/xx</string>
+    <string name="fab_add_story_description">Add new story</string>
+    <string name="password_error">Password must not be less than 8 characters</string>
+    <string name="image_story">image story</string>
 </resources>

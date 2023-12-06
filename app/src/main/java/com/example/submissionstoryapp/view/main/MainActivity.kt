@@ -77,7 +77,8 @@ class MainActivity : AppCompatActivity() {
         try {
             viewModel.getStories()
         } catch (e: Exception) {
-            Toast.makeText(this, "An error occurred while loading stories.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "An error occurred while loading stories.", Toast.LENGTH_SHORT)
+                .show()
             Log.e("MainActivity", "Error during onResume", e)
         }
     }

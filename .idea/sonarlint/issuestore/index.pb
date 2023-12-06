@@ -126,3 +126,13 @@ z
 Japp/src/main/java/com/example/submissionstoryapp/view/main/StoryAdapter.kt,f\a\fa48fd83070a08fc2fb2aef9dbb9455943927dec
 ~
 Napp/src/main/java/com/example/submissionstoryapp/view/detail/DetailActivity.kt,8\8\88dd2f41d7cfd5a40f4a0a8f623dcf7a0e52f48d
+|
+Lapp/src/main/java/com/example/submissionstoryapp/widget/ImagebannerWidget.kt,c\8\c8eb827ea5d3e62a1365b15082a666826c82271b
+‚
+Rapp/src/main/java/com/example/submissionstoryapp/widget/StackRemoteViewsFactory.kt,2\7\2793bcf3a0f9800d540cf37101e960c596319b9e
+}
+Mapp/src/main/java/com/example/submissionstoryapp/widget/StackWidgetService.kt,b\9\b91dee310aa695d9540aaa953e06a1e7c48815a4
+|
+Lapp/src/main/java/com/example/submissionstoryapp/widget/ImageBannerWidget.kt,c\7\c7f101c3570ba4fa39bb2d7dc1fd7f027daa3d93
+~
+Napp/src/main/java/com/example/submissionstoryapp/view/splash/SplashActivity.kt,f\f\fff2297c673a456a1240e58e837660f75dc639f4

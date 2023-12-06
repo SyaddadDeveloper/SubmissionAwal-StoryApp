@@ -71,10 +71,12 @@ class SignupActivity : AppCompatActivity() {
                                 data.message?.let { message -> showSuccessDialog(message) }
                             }
                         }
+
                         is Result.Error -> {
                             showLoading(false)
                             showErrorDialog(result.error)
                         }
+
                         is Result.Loading -> showLoading(true)
                     }
                 }
@@ -86,7 +88,8 @@ class SignupActivity : AppCompatActivity() {
     }
 
     private fun isValidInput(name: String, email: String, password: String): Boolean {
-        return name.isNotBlank() && Patterns.EMAIL_ADDRESS.matcher(email).matches() && password.length >= MIN_PASSWORD_LENGTH
+        return name.isNotBlank() && Patterns.EMAIL_ADDRESS.matcher(email)
+            .matches() && password.length >= MIN_PASSWORD_LENGTH
     }
 
     private fun showLoading(isLoading: Boolean) {
@@ -98,7 +101,10 @@ class SignupActivity : AppCompatActivity() {
     }
 
     private fun showErrorDialog(errorMessage: String) {
-        showDialog(getString(R.string.error_title), errorMessage) { /* You can add custom handling here if needed */ }
+        showDialog(
+            getString(R.string.error_title),
+            errorMessage
+        ) { /* You can add custom handling here if needed */ }
     }
 
     private fun showDialog(title: String, message: String, positiveAction: () -> Unit) {

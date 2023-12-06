@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">SubmissionStoryApp</string>
+
+    <string name="signup">Daftar</string>
+    <string name="login">Masuk</string>
+    <string name="message_welcome_page">Jangan Pendam Perasaanmu, Ceritakanlah Kisah Manis dan Pahitmu</string>
+    <string name="title_welcome_page">Selamat Datang di Ceritaku!</string>
+    <string name="title_signup_page">Isi data dirimu di bawah ini.</string>
+    <string name="email">Email</string>
+    <string name="password">Kata Sandi</string>
+    <string name="message_login_page">Masukkan data dirimu terlebih dahulu</string>
+    <string name="title_login_page">Satu Langkah Lagi untuk Menceritakan Perasaanmu</string>
+    <string name="name">Nama</string>
+    <string name="greeting">Hello %1$s,</string>
+    <string name="logout">Keluar</string>
+    <string name="invalidEmail">Email Tidak Valid</string>
+    <string name="regex_email" tools:ignore="TypographyDashes">^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$</string>
+    <string name="camera">Kamera</string>
+    <string name="gallery">Galeri</string>
+    <string name="upload">Unggah</string>
+    <string name="empty_image_warning">Harap masukkan file gambar terlebih dahulu.</string>
+    <string name="description">Deskripsi</string>
+    <string name="my_story_logo">LOGO CERITAKU</string>
+    <string name="success_title">Yeah</string>
+    <string name="error_title">OOPS</string>
+    <string name="img_desc_login">deskripsi gambar login</string>
+    <string name="menu_language">bahasa</string>
+    <string name="menu_logout">keluar</string>
+    <string name="detail">detail</string>
+    <string name="format_date">xx/xx/xx</string>
+    <string name="fab_add_story_description">Tambah cerita baru</string>
+    <string name="password_error">Kata Sandi tidak boleh kurang dari 8 karakter</string>
+    <string name="image_story">foto cerita</string>
+</resources>

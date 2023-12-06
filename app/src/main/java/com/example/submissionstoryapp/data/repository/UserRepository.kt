@@ -21,10 +21,10 @@ import java.io.File
 
 class UserRepository private constructor(
     private val apiService: ApiService,
-    private val userPreference: UserPreference
+    private val userPreference: UserPreference,
 ) {
 
-    suspend fun saveSession(user: UserModel) {
+    private suspend fun saveSession(user: UserModel) {
         userPreference.saveSession(user)
     }
 
@@ -117,7 +117,7 @@ class UserRepository private constructor(
         private var instance: UserRepository? = null
         fun getInstance(
             apiService: ApiService,
-            userPreference: UserPreference
+            userPreference: UserPreference,
         ): UserRepository = UserRepository(apiService, userPreference)
     }
 }

@@ -3,7 +3,9 @@ package com.example.submissionstoryapp.view.detail
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.ActionBar
+import androidx.core.view.ViewCompat
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.submissionstoryapp.R
 import com.example.submissionstoryapp.databinding.ActivityDetailBinding
 
@@ -24,7 +26,11 @@ class DetailActivity : AppCompatActivity() {
         binding.tvDetailDescription.text = description
         binding.tvCreatAt.text = createdAt
 
-        Glide.with(this).load(picture).into(binding.ivDetailStory)
+        Glide.with(this).load(picture)
+            .transition(DrawableTransitionOptions.withCrossFade())
+            .into(binding.ivDetailStory)
+
+        ViewCompat.setTransitionName(binding.tvDetailName, "transition_tv_item_name")
 
         supportActionBar?.displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM
         supportActionBar?.setCustomView(R.layout.custom_actionbar)
