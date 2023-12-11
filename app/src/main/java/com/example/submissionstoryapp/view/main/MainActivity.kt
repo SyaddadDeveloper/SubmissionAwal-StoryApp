@@ -1,5 +1,6 @@
 package com.example.submissionstoryapp.view.main
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
@@ -109,9 +110,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+
     @Deprecated("Deprecated in Java")
+    @SuppressLint("MissingSuperCall")
     override fun onBackPressed() {
-        super.onBackPressed()
+        super.onBackPressedDispatcher
         val intent = Intent(Intent.ACTION_MAIN)
         intent.addCategory(Intent.CATEGORY_HOME)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK

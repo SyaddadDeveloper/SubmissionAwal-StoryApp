@@ -113,8 +113,6 @@ class UserRepository private constructor(
     }
 
     companion object {
-        @Volatile
-        private var instance: UserRepository? = null
         fun getInstance(
             apiService: ApiService,
             userPreference: UserPreference,

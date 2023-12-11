@@ -22,10 +22,11 @@ class DetailActivity : AppCompatActivity() {
         picture = intent.getStringExtra(PICTURE) ?: ""
         createdAt = intent.getStringExtra(CREATED_AT) ?: ""
 
-        binding.tvDetailName.text = name
-        binding.tvDetailDescription.text = description
-        binding.tvCreatAt.text = createdAt
-
+        binding.apply {
+            tvDetailName.text = name
+            tvDetailDescription.text = description
+            tvCreatAt.text = createdAt
+        }
         Glide.with(this).load(picture)
             .transition(DrawableTransitionOptions.withCrossFade())
             .into(binding.ivDetailStory)
