@@ -1,12 +1,21 @@
 package com.example.submissionstoryapp.data.repository
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
+import androidx.paging.ExperimentalPagingApi
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.liveData
 import com.example.submissionstoryapp.data.Result
 import com.example.submissionstoryapp.data.api.ApiConfig
 import com.example.submissionstoryapp.data.api.ApiService
+import com.example.submissionstoryapp.data.db.StoryDataBase
+import com.example.submissionstoryapp.data.paging.StoryRemoteMediator
 import com.example.submissionstoryapp.data.pref.UserModel
 import com.example.submissionstoryapp.data.pref.UserPreference
 import com.example.submissionstoryapp.data.response.ErrorResponse
+import com.example.submissionstoryapp.data.response.ListStoryItem
 import com.example.submissionstoryapp.data.response.LoginResponse
 import com.example.submissionstoryapp.data.response.SignupResponse
 import com.example.submissionstoryapp.data.response.UploadResponse
@@ -20,6 +29,7 @@ import retrofit2.HttpException
 import java.io.File
 
 class UserRepository private constructor(
+    private val dataBase: StoryDataBase,
     private val apiService: ApiService,
     private val userPreference: UserPreference,
 ) {
@@ -80,11 +90,24 @@ class UserRepository private constructor(
         }
     }
 
-    fun getStories() = liveData {
+    @OptIn(ExperimentalPagingApi::class)
+    fun getStories(): LiveData<PagingData<ListStoryItem>> {
+        return Pager(
+            config = PagingConfig(
+                pageSize = 5
+            ),
+            remoteMediator = StoryRemoteMediator(dataBase, apiService),
+            pagingSourceFactory = {
+                dataBase.storyDao().getAllStory()
+            }
+        ).liveData
+    }
+
+    fun getStoriesWithLocation(): LiveData<Result<List<ListStoryItem>>> = liveData {
         emit(Result.Loading)
         try {
-            val response = apiService.getStories()
-            emit(Result.Success(response))
+            val response = apiService.getStoriesWithLocation()
+            emit(Result.Success(response.listStory))
         } catch (e: HttpException) {
             val jsonInString = e.response()?.errorBody()?.string()
             val errorBody = Gson().fromJson(jsonInString, ErrorResponse::class.java)
@@ -93,7 +116,7 @@ class UserRepository private constructor(
         }
     }
 
-    fun uploadStories(imageFile: File, description: String) = liveData {
+    fun uploadStories(imageFile: File, description: String,lat: Double?, lon: Double?) = liveData {
         emit(Result.Loading)
         val requestBody = description.toRequestBody("text/plain".toMediaType())
         val requestImageFile = imageFile.asRequestBody("image/jpeg".toMediaType())
@@ -102,9 +125,15 @@ class UserRepository private constructor(
             imageFile.name,
             requestImageFile
         )
+        val requestLat = lat?.toString()?.toRequestBody()
+        val requestLon = lon?.toString()?.toRequestBody()
         try {
-            val successResponse = apiService.uploadImage(multipartBody, requestBody)
-            emit(Result.Success(successResponse))
+            val successResponse = apiService.uploadImage(multipartBody, requestBody, requestLat, requestLon)
+            if (successResponse.error) {
+                emit(Result.Error(successResponse.message))
+            } else {
+                emit(Result.Success(successResponse))
+            }
         } catch (e: HttpException) {
             val errorBody = e.response()?.errorBody()?.string()
             val errorResponse = Gson().fromJson(errorBody, UploadResponse::class.java)
@@ -114,8 +143,9 @@ class UserRepository private constructor(
 
     companion object {
         fun getInstance(
+            dataBase: StoryDataBase,
             apiService: ApiService,
             userPreference: UserPreference,
-        ): UserRepository = UserRepository(apiService, userPreference)
+        ): UserRepository = UserRepository(dataBase, apiService, userPreference)
     }
 }

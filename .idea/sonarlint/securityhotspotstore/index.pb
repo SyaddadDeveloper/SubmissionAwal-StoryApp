@@ -130,8 +130,6 @@ Napp/src/main/java/com/example/submissionstoryapp/view/detail/DetailActivity.kt
 Napp/src/main/java/com/example/submissionstoryapp/view/splash/SplashActivity.kt,f\f\fff2297c673a456a1240e58e837660f75dc639f4
 y
 Iapp/src/main/java/com/example/submissionstoryapp/view/map/MapsActivity.kt,e\2\e267a3bb3e8df9a866edaee24f1e8eefe05bbb4b
-s
-Capp/src/main/java/com/example/submissionstoryapp/raw/map_style.json,c\e\ce0efff4847a3ce347564fb76b85b0f4ad398874
 w
 G.idea/sonarlint/issuestore/e/9/e961afae2f34de80c3a84c4c8dd3b902e73a79cb,d\1\d10b5523dc71eac254aa7cc181198ea4d4913131
 w
@@ -330,3 +328,17 @@ w
 G.idea/sonarlint/issuestore/6/a/6ab60ef48a430fec25c21e8330d283302bedb21a,a\d\ad7c6492576761912d89945570dd8fed274b5d85
 w
 G.idea/sonarlint/issuestore/f/b/fbe448ebfc3eb2d4e308f6b8b043666f5b57235e,5\2\52114fdaa426e9b83a3c5df4e11c4f0ebbcd814b
+ƒ
+Sapp/src/main/java/com/example/submissionstoryapp/data/paging/StoryRemoteMediator.kt,3\7\3750ca4ec60f92cc560f18e4a0cc03269759b176
+y
+Iapp/src/main/java/com/example/submissionstoryapp/data/db/StoryDatabase.kt,0\9\09ba2665e95c1cc2a46c13c063e62f4859d7f6e6
+v
+Fapp/src/main/java/com/example/submissionstoryapp/data/db/RemoteKeys.kt,a\7\a7e82bd79a3cec7ee6e6f74522231822d3e3d318
+t
+Dapp/src/main/java/com/example/submissionstoryapp/data/db/StoryDao.kt,1\b\1b542500abad72adf7f2871e21cc2b68f3a567ae
+y
+Iapp/src/main/java/com/example/submissionstoryapp/data/db/RemoteKeysDao.kt,6\8\68cb012249daa1c0e4b7f99c2150b3908e58b180
+„
+Tapp/src/main/java/com/example/submissionstoryapp/data/adapter/LoadingStateAdapter.kt,3\a\3a59c080123a546a9120a42ea30c3f68133e834d
+z
+Japp/src/main/java/com/example/submissionstoryapp/view/map/MapsViewModel.kt,5\c\5cc00dda067363194a76d3f4db99658a03265264

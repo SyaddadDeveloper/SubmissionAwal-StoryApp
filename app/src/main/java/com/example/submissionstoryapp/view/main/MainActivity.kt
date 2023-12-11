@@ -7,8 +7,6 @@ import android.provider.Settings
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
@@ -18,14 +16,14 @@ import com.example.submissionstoryapp.R
 import com.example.submissionstoryapp.databinding.ActivityMainBinding
 import com.example.submissionstoryapp.data.ViewModelFactory
 import com.example.submissionstoryapp.view.welcome.WelcomeActivity
-import com.example.submissionstoryapp.data.Result
+import com.example.submissionstoryapp.data.adapter.LoadingStateAdapter
 import com.example.submissionstoryapp.view.map.MapsActivity
 import com.example.submissionstoryapp.view.story.StoryActivity
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-
+    private var storyAdapter = StoryAdapter()
     private val viewModel by viewModels<MainViewModel> {
         ViewModelFactory.getInstance(this)
     }
@@ -35,11 +33,17 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setUpAction()
-        viewModel.getSession().observe(this) {}
 
-        supportActionBar?.displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM
-        supportActionBar?.setCustomView(R.layout.custom_actionbar)
+        supportActionBar?.apply {
+            displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM
+            setCustomView(R.layout.custom_actionbar)
+        }
         itemDecoration()
+
+        binding.rvStory.adapter = storyAdapter.withLoadStateFooter(
+            footer = LoadingStateAdapter {
+                storyAdapter.retry()
+            })
 
         viewModel.getSession().observe(this) { user ->
             Log.d("token", "onCreate: ${user.token}")
@@ -50,38 +54,8 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        viewModel.dataStory.observe(this) { story ->
-            if (story != null) {
-                when (story) {
-                    is Result.Loading -> {
-                        Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
-                        showLoading(true)
-                    }
-
-                    is Result.Success -> {
-                        val storyData = story.data.listStory
-                        val storyAdapter = StoryAdapter()
-                        storyAdapter.submitList(storyData)
-                        binding.rvStory.adapter = storyAdapter
-                        showLoading(false)
-                    }
-
-                    is Result.Error -> {
-                        showLoading(false)
-                    }
-                }
-            }
-        }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        try {
-            viewModel.getStories()
-        } catch (e: Exception) {
-            Toast.makeText(this, "An error occurred while loading stories.", Toast.LENGTH_SHORT)
-                .show()
-            Log.e("MainActivity", "Error during onResume", e)
+        viewModel.getStoryPagingData().observe(this) { story ->
+            storyAdapter.submitData(lifecycle, story)
         }
     }
 
@@ -100,17 +74,6 @@ class MainActivity : AppCompatActivity() {
         val itemDecoration = DividerItemDecoration(this, layoutManager.orientation)
         binding.rvStory.addItemDecoration(itemDecoration)
     }
-
-    private fun showLoading(isLoading: Boolean) {
-        binding.apply {
-            if (isLoading) {
-                progressBarMain.visibility = View.VISIBLE
-            } else {
-                progressBarMain.visibility = View.GONE
-            }
-        }
-    }
-
 
     @Deprecated("Deprecated in Java")
     @SuppressLint("MissingSuperCall")
@@ -134,10 +97,10 @@ class MainActivity : AppCompatActivity() {
             }
 
             R.id.menu2 -> {
-                startActivity(Intent(this,MapsActivity::class.java))
+                startActivity(Intent(this, MapsActivity::class.java))
             }
 
-            R.id.menu3-> {
+            R.id.menu3 -> {
                 viewModel.logout()
                 return true
             }

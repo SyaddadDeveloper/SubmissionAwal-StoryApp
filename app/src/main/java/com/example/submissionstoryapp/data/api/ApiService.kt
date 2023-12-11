@@ -12,6 +12,7 @@ import retrofit2.http.GET
 import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.Part
+import retrofit2.http.Query
 
 interface ApiService {
     @FormUrlEncoded
@@ -31,6 +32,8 @@ interface ApiService {
 
     @GET("stories")
     suspend fun getStories(
+        @Query("page") page: Int = 1,
+        @Query("size") size: Int = 20,
     ): StoryResponse
 
     @Multipart
@@ -38,6 +41,12 @@ interface ApiService {
     suspend fun uploadImage(
         @Part file: MultipartBody.Part,
         @Part("description") description: RequestBody,
+        @Part("lat") lat: RequestBody?,
+        @Part("lon") lon: RequestBody?
     ): FileUploadResponse
 
+    @GET("stories")
+    suspend fun getStoriesWithLocation(
+        @Query("location") location: Int = 1,
+    ): StoryResponse
 }

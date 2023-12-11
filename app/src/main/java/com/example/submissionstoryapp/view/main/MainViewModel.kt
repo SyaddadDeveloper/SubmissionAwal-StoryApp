@@ -1,23 +1,20 @@
 package com.example.submissionstoryapp.view.main
 
+import android.util.Log
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asFlow
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import com.example.submissionstoryapp.data.repository.UserRepository
 import com.example.submissionstoryapp.data.pref.UserModel
-import com.example.submissionstoryapp.data.response.StoryResponse
 import kotlinx.coroutines.launch
-import com.example.submissionstoryapp.data.Result
+import com.example.submissionstoryapp.data.response.ListStoryItem
 
 class MainViewModel(private val repository: UserRepository) : ViewModel() {
-    private val _listStory = MutableLiveData<Result<StoryResponse>>()
-    val dataStory: LiveData<Result<StoryResponse>> get() = _listStory
-
-    init {
-        getStories()
+    fun getStoryPagingData(): LiveData<PagingData<ListStoryItem>> {
+        return repository.getStories().cachedIn(viewModelScope)
     }
 
     fun getSession(): LiveData<UserModel> {
@@ -26,15 +23,10 @@ class MainViewModel(private val repository: UserRepository) : ViewModel() {
 
     fun logout() {
         viewModelScope.launch {
-            repository.logout()
-        }
-    }
-
-    fun getStories() {
-        viewModelScope.launch {
-            val storyResponse = repository.getStories()
-            storyResponse.asFlow().collect {
-                _listStory.value = it
+            try {
+                repository.logout()
+            } catch (e: Exception) {
+                Log.e("MainViewModel", "Error during logout", e)
             }
         }
     }

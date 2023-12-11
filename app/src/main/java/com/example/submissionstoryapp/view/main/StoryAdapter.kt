@@ -7,8 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.util.Pair
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.submissionstoryapp.data.response.ListStoryItem
@@ -16,7 +16,7 @@ import com.example.submissionstoryapp.databinding.ItemStoryBinding
 import com.example.submissionstoryapp.view.detail.DetailActivity
 
 class StoryAdapter :
-    ListAdapter<ListStoryItem, StoryAdapter.MyViewHolder>(DIFF_CALLBACK) {
+    PagingDataAdapter<ListStoryItem, StoryAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val binding =
@@ -25,8 +25,8 @@ class StoryAdapter :
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val user = getItem(position)
-        holder.bind(user)
+        val storyItem = getItem(position)
+        holder.bind(storyItem)
     }
 
     inner class MyViewHolder(private val binding: ItemStoryBinding) :

@@ -38,4 +38,7 @@
     <string name="satellite_type">Satellite</string>
     <string name="terrain_type">Terrain</string>
     <string name="hybrid_type">Hybrid</string>
+    <string name="retry">retry</string>
+    <string name="success_show_location">Success Show Location</string>
+    <string name="error_show_location">Error Show Location</string>
 </resources>
