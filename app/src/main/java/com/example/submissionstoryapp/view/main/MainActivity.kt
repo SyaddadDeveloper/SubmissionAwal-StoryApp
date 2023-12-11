@@ -33,6 +33,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setUpAction()
+        storyAdapter = StoryAdapter()
 
         supportActionBar?.apply {
             displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM
@@ -57,6 +58,11 @@ class MainActivity : AppCompatActivity() {
         viewModel.getStoryPagingData().observe(this) { story ->
             storyAdapter.submitData(lifecycle, story)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        storyAdapter.refresh()
     }
 
     private fun setUpAction() {
