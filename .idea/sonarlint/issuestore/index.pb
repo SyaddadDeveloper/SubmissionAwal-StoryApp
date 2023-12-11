@@ -342,3 +342,11 @@ Iapp/src/main/java/com/example/submissionstoryapp/data/db/RemoteKeysDao.kt,6\8\
 Tapp/src/main/java/com/example/submissionstoryapp/data/adapter/LoadingStateAdapter.kt,3\a\3a59c080123a546a9120a42ea30c3f68133e834d
 z
 Japp/src/main/java/com/example/submissionstoryapp/view/map/MapsViewModel.kt,5\c\5cc00dda067363194a76d3f4db99658a03265264
+t
+Dapp/src/test/java/com/example/submissionstoryapp/LiveDataTestUtil.kt,4\f\4fb0fcba803fa7cd6d4d1adfb8108ec83a8303b0
+v
+Fapp/src/test/java/com/example/submissionstoryapp/MainDispatcherRule.kt,a\3\a3c62a7d1aedc64cc1629d94a956044298c322a8
+m
+=app/src/test/java/com/example/submissionstoryapp/DataDummy.kt,4\5\454021781c0d9199f1530d1d7fc492422500d81d
+
+Oapp/src/test/java/com/example/submissionstoryapp/view/main/MainViewModelTest.kt,2\f\2f5bed796a1ab3b6ba4b529470cb99bc361f06ad
