@@ -19,6 +19,7 @@ import com.example.submissionstoryapp.databinding.ActivityMainBinding
 import com.example.submissionstoryapp.data.ViewModelFactory
 import com.example.submissionstoryapp.view.welcome.WelcomeActivity
 import com.example.submissionstoryapp.data.Result
+import com.example.submissionstoryapp.view.map.MapsActivity
 import com.example.submissionstoryapp.view.story.StoryActivity
 
 class MainActivity : AppCompatActivity() {
@@ -133,6 +134,10 @@ class MainActivity : AppCompatActivity() {
             }
 
             R.id.menu2 -> {
+                startActivity(Intent(this,MapsActivity::class.java))
+            }
+
+            R.id.menu3-> {
                 viewModel.logout()
                 return true
             }

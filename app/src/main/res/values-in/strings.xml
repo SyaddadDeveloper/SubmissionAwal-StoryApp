@@ -32,4 +32,10 @@
     <string name="fab_add_story_description">Tambah cerita baru</string>
     <string name="password_error">Kata Sandi tidak boleh kurang dari 8 karakter</string>
     <string name="image_story">foto cerita</string>
+    <string name="menu_map">menu_map</string>
+    <string name="title_activity_maps">Lokasi Story</string>
+    <string name="normal_type">Normal</string>
+    <string name="satellite_type">Satelit</string>
+    <string name="terrain_type">Medan</string>
+    <string name="hybrid_type">Hibrida</string>
 </resources>

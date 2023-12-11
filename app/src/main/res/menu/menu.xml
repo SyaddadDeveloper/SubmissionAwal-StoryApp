@@ -8,6 +8,11 @@
         app:showAsAction="never" />
     <item
         android:id="@+id/menu2"
+        android:icon="@drawable/ic_baseline_map_24"
+        android:title="@string/menu_map"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/menu3"
         android:icon="@drawable/ic_baseline_logout_24"
         android:title="@string/menu_logout"
         app:showAsAction="never" />
