@@ -39,8 +39,10 @@
     <string name="terrain_type">Medan</string>
     <string name="hybrid_type">Hibrida</string>
     <string name="retry">Coba Lagi</string>
-
     <string name="success_show_location">Suskes Menampilkan Lokasi Story</string>
     <string name="error_show_location">Error Menampilkan Location</string>
+    <string name="share_location_story">Bagikan Lokasi Kisahmu?</string>
+    <string name="location_authorized">Membagikan Lokasi Kisahmu</string>
+    <string name="location_unauthorized">>Tidak Membagikan Lokasi Kisahmu</string>
 
 </resources>
