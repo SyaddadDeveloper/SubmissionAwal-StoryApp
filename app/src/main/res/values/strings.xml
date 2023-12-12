@@ -41,4 +41,7 @@
     <string name="retry">retry</string>
     <string name="success_show_location">Success Show Location</string>
     <string name="error_show_location">Error Show Location</string>
+    <string name="share_location_story">Share the location of your story?</string>
+    <string name="location_authorized">You share the Story Location</string>
+    <string name="location_unauthorized">You Not share the Story Location</string>
 </resources>
